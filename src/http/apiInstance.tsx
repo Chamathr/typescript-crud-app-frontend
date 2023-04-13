@@ -1,8 +1,8 @@
 import axios from "axios";
-import { BASE_URL } from "../constants/apiConstants";
+import { BASE_URL, BASE_URL_PREFIX } from "../constants/apiConstants";
 
 export const apiInstance = axios.create({
-  baseURL: BASE_URL,
+  baseURL: `${BASE_URL}/${BASE_URL_PREFIX}`,
   timeout: 3000,
   headers: {
     "Access-Control-Allow-Origin": "*",

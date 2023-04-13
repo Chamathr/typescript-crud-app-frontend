@@ -1,6 +1,6 @@
 import { getDataActions } from "../types/dataType";
 
-export const getData = (payload: any) => {
+export const fetchData = (payload: any) => {
   return {
     type: getDataActions.GET_DATA,
     payload,

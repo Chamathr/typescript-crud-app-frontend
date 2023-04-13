@@ -18,7 +18,7 @@ export function* getData(): Generator<any, void, unknown> {
       yield put(setDataLoading('loading'));
       const data: IData = yield call(getDataApi);
       yield put(setDataLoading('idle'));
-      yield put(setData(data?.data));
+      yield put(setData(data?.data?.data?.data));
     } catch (error: any) {
       yield put(setDataLoading('idle'));
       yield put(setDataError(error.message));

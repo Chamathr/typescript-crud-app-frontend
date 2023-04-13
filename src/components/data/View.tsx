@@ -17,17 +17,17 @@ const View = (props: any) => {
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell align="right">ID</TableCell>
-                            <TableCell align="right">User Id</TableCell>
-                            <TableCell align="right">Title</TableCell>
+                            <TableCell align="right">Name</TableCell>
+                            <TableCell align="right">Email</TableCell>
+                            <TableCell align="right">Age</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {dataList?.map((row: any) => (
                             <TableRow>
-                                <TableCell align="right">{row.id}</TableCell>
-                                <TableCell align="right">{row.userId}</TableCell>
-                                <TableCell align="right">{row.title}</TableCell>
+                                <TableCell align="right">{row.name}</TableCell>
+                                <TableCell align="right">{row.email}</TableCell>
+                                <TableCell align="right">{row.age}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

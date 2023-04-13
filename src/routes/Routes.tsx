@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const Home = lazy(() => import('../pages/Home'));
 const About = lazy(() => import('../pages/About'));
@@ -8,32 +8,15 @@ const Data = lazy(() => import('../pages/Data'));
 const ProjectRoutes = () => {
   return (
     <>
-      <Routes>
-        <Route
-          index
-          element={
-            <Suspense fallback="Loading...">
-              <Home />
-            </Suspense>
-          }
-        />
-        <Route
-          path="about"
-          element={
-            <Suspense fallback="Loading...">
-              <About />
-            </Suspense>
-          }
-        />
-        <Route
-          path="data/view"
-          element={
-            <Suspense fallback="Loading...">
-              <Data />
-            </Suspense>
-          }
-        />
-      </Routes>
+      <BrowserRouter >
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route path="/" Component={Home} />
+            <Route path="/about" Component={About} />
+            <Route path="/data/view" Component={Data} />
+          </Routes>
+        </Suspense>
+      </BrowserRouter >
     </>
   )
 }
