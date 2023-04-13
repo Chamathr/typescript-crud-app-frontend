@@ -13,12 +13,12 @@ import {
 } from "../services/dataService";
 
 export function* getData(): Generator<any, void, unknown> {
-  yield takeEvery(getDataActions.GET_DATA, function* () {
+  yield takeEvery(getDataActions.GET_DATA, function* (payload: any) {
     try {
       yield put(setDataLoading('loading'));
-      const data: IData = yield call(getDataApi);
+      const data: IData = yield call(getDataApi, payload?.payload);
       yield put(setDataLoading('idle'));
-      yield put(setData(data?.data?.data?.data));
+      yield put(setData(data?.data?.data));
     } catch (error: any) {
       yield put(setDataLoading('idle'));
       yield put(setDataError(error.message));

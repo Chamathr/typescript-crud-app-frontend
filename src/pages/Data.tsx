@@ -4,6 +4,7 @@ import { fetchData } from "../redux/actions/dataAction";
 import { connect } from "react-redux";
 import { selectDataList } from "../redux/selectors/dataSelector";
 import View from "../components/data/View";
+import { Card } from "@mui/material";
 
 const Data = () => {
 
@@ -16,7 +17,9 @@ const Data = () => {
 
     return (
         <>
-            <View dataList={dataList} />
+            <Card sx={{padding: '5rem', height: '100vh'}}>
+                <View dataList={dataList} />
+            </Card>
         </>
     )
 }
