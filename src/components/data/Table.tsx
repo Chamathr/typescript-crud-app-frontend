@@ -5,12 +5,12 @@ import { Table, Button } from 'antd';
 import { useNavigate  } from 'react-router-dom';
 
 
-const View = (props: any) => {
+const DataTable = (props: any) => {
 
     const navigate = useNavigate ();
     
     const { dataList } = props
-    const dataPerPage = 2
+    const dataPerPage = 5
 
     const dispatch = useDispatch();
 
@@ -33,7 +33,7 @@ const View = (props: any) => {
             key: 'actions',
             render: (text: any, record: any) => (
                 <>
-                    <Button type="primary" onClick={() => console.log(record)}>
+                    <Button type="primary" onClick={() => navigate(`/data/profile/${record._id}`)}>
                         View Details
                     </Button>
                     <Button type="primary" onClick={() => console.log(record)} style={{marginLeft: '10px'}}>
@@ -66,4 +66,4 @@ const View = (props: any) => {
     )
 }
 
-export default View;
+export default DataTable;

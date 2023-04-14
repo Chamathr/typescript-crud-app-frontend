@@ -3,10 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchData } from "../redux/actions/dataAction";
 import { connect } from "react-redux";
 import { selectDataList } from "../redux/selectors/dataSelector";
-import View from "../components/data/View";
+import DataTable from "../components/data/Table";
 import { Card } from "@mui/material";
 
-const Data = () => {
+const Table = () => {
 
     const dispatch = useDispatch();
     const dataList = useSelector(selectDataList)
@@ -18,7 +18,7 @@ const Data = () => {
     return (
         <>
             <Card sx={{padding: '5rem', height: '100vh'}}>
-                <View dataList={dataList} />
+                <DataTable dataList={dataList} />
             </Card>
         </>
     )
@@ -26,4 +26,4 @@ const Data = () => {
 
 export default connect(
     fetchData
-)(Data);
+)(Table);

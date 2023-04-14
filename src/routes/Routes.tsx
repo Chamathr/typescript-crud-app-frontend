@@ -3,8 +3,9 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const Home = lazy(() => import('../pages/Home'));
 const About = lazy(() => import('../pages/About'));
-const Data = lazy(() => import('../pages/Data'));
+const Table = lazy(() => import('../pages/Table'));
 const Add = lazy(() => import('../pages/Add'));
+const Profile = lazy(() => import('../pages/Profile'));
 
 const ProjectRoutes = () => {
   return (
@@ -14,8 +15,9 @@ const ProjectRoutes = () => {
           <Routes>
             <Route path="/" Component={Home} />
             <Route path="/about" Component={About} />
-            <Route path="/data/view" Component={Data} />
+            <Route path="/data/view" Component={Table} />
             <Route path="/data/add" Component={Add} />
+            <Route path="/data/profile/:id" Component={Profile} />
           </Routes>
         </Suspense>
       </BrowserRouter >

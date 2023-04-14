@@ -1,4 +1,4 @@
-import { addDataActions, getDataActions } from "../types/dataType";
+import { addDataActions, getDataActions, getDataByIdActions } from "../types/dataType";
 
 /*get data*/
 export const fetchData = (payload: any) => {
@@ -54,6 +54,35 @@ export const setAddDataError = (payload: any) => {
 export const setAddDataLoading = (payload: any) => {
   return {
     type: addDataActions.SET_ADD_DATA_LOADING,
+    payload,
+  };
+};
+
+/*get data by id*/
+export const fetchDataById = (payload: any) => {
+  return {
+    type: getDataByIdActions.GET_DATA_BY_ID,
+    payload,
+  };
+};
+
+export const setGetDataById = (payload: any) => {
+  return {
+    type: getDataByIdActions.SET_GET_DATA_BY_ID,
+    payload,
+  };
+};
+
+export const setGetDataByIdError = (payload: any) => {
+  return {
+    type: getDataByIdActions.SET_GET_DATA_BY_ID_ERROR,
+    payload,
+  };
+};
+
+export const setGetDataByIdLoading = (payload: any) => {
+  return {
+    type: getDataByIdActions.SET_GET_DATA_BY_ID_LOADING,
     payload,
   };
 };

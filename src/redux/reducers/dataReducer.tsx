@@ -1,5 +1,5 @@
 import { Action } from "redux";
-import { addDataActions, getDataActions } from "../types/dataType";
+import { addDataActions, getDataActions, getDataByIdActions } from "../types/dataType";
 
 const initialState = {
     data: [],
@@ -8,7 +8,11 @@ const initialState = {
 
     addedData: null,
     addDataLoading: 'idle',
-    addDataError: null
+    addDataError: null,
+
+    dataById: {},
+    getDataByIdLoading: 'idle',
+    getDataByIdError: null,
 };
 
 export const dataReducer = (state = initialState, action: any) => {
@@ -46,6 +50,23 @@ export const dataReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 addDataError: action.payload,
+            };
+
+        /*get data by id*/
+        case getDataByIdActions.SET_GET_DATA_BY_ID:
+            return {
+                ...state,
+                dataById: action.payload,
+            };
+        case getDataByIdActions.SET_GET_DATA_BY_ID_LOADING:
+            return {
+                ...state,
+                getDataByIdLoading: action.payload,
+            };
+        case getDataByIdActions.SET_GET_DATA_BY_ID_ERROR:
+            return {
+                ...state,
+                getDataByIdError: action.payload,
             };
 
         default:
