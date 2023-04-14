@@ -5,44 +5,51 @@ import {
   getDataActions,
 } from "../types/dataType";
 import {
-  setData,
-  setDataError,
-  setDataLoading
+  setAddData,
+  setAddDataError,
+  setAddDataLoading,
+  setGetData,
+  setGetDataError,
+  setGetDataLoading
 } from "../actions/dataAction";
 import {
+  addDataApi,
   getDataApi,
 } from "../services/dataService";
 
+/*get data*/
 export function* getData(): Generator<any, void, unknown> {
   yield takeEvery(getDataActions.GET_DATA, function* (payload: any) {
     try {
-      yield put(setDataLoading('loading'));
+      yield put(setGetDataLoading('loading'));
       const data: IData = yield call(getDataApi, payload?.payload);
-      yield put(setDataLoading('idle'));
-      yield put(setData(data?.data?.data));
+      yield put(setGetDataLoading('idle'));
+      yield put(setGetData(data?.data?.data));
     } catch (error: any) {
-      yield put(setDataLoading('idle'));
-      yield put(setDataError(error.message));
+      yield put(setGetDataLoading('idle'));
+      yield put(setGetDataError(error.message));
     }
   });
 }
 
-export function* addData(): Generator<any, void, unknown> {
+/*add data*/
+export function* addForm(): Generator<any, void, unknown> {
   yield takeEvery(addDataActions.ADD_DATA, function* (payload: any) {
     try {
-      yield put(setDataLoading('loading'));
-      const data: IData = yield call(getDataApi, payload?.payload);
-      yield put(setDataLoading('idle'));
-      yield put(setData(data?.data?.data));
+      yield put(setAddDataLoading('loading'));
+      const data: IData = yield call(addDataApi, payload?.payload);
+      yield put(setAddDataLoading('idle'));
+      yield put(setAddData(data?.data?.data));
     } catch (error: any) {
-      yield put(setDataLoading('idle'));
-      yield put(setDataError(error.message));
+      yield put(setAddDataLoading('idle'));
+      yield put(setAddDataError(error.message));
     }
   });
 }
 
 export default function* rootSaga() {
   yield all([
-    fork(getData)
+    fork(getData),
+    fork(addForm)
   ]);
 }
