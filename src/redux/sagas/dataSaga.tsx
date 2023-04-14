@@ -1,6 +1,7 @@
 import { put, all, fork, call, takeEvery, delay } from "redux-saga/effects";
 import { IData } from "../../interfaces/Data";
 import {
+  addDataActions,
   getDataActions,
 } from "../types/dataType";
 import {
@@ -14,6 +15,20 @@ import {
 
 export function* getData(): Generator<any, void, unknown> {
   yield takeEvery(getDataActions.GET_DATA, function* (payload: any) {
+    try {
+      yield put(setDataLoading('loading'));
+      const data: IData = yield call(getDataApi, payload?.payload);
+      yield put(setDataLoading('idle'));
+      yield put(setData(data?.data?.data));
+    } catch (error: any) {
+      yield put(setDataLoading('idle'));
+      yield put(setDataError(error.message));
+    }
+  });
+}
+
+export function* addData(): Generator<any, void, unknown> {
+  yield takeEvery(addDataActions.ADD_DATA, function* (payload: any) {
     try {
       yield put(setDataLoading('loading'));
       const data: IData = yield call(getDataApi, payload?.payload);

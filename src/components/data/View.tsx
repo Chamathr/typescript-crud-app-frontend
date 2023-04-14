@@ -2,10 +2,13 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchData } from '../../redux/actions/dataAction';
 import { Table, Button } from 'antd';
+import { useNavigate  } from 'react-router-dom';
 
 
 const View = (props: any) => {
 
+    const navigate = useNavigate ();
+    
     const { dataList } = props
     const dataPerPage = 2
 
@@ -56,6 +59,9 @@ const View = (props: any) => {
                     onChange: handlePageChange,
                 }}
             />
+            <Button type="primary" style={{float: 'right'}} onClick={() => navigate('/data/add')}>
+                Add Data
+            </Button>
         </>
     )
 }
