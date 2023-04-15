@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { fetchData } from '../../redux/actions/dataAction';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteData, fetchData, setDeleteData } from '../../redux/actions/dataAction';
 import { Table, Button } from 'antd';
-import { useNavigate  } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
+import { selectDeletedData } from '../../redux/selectors/dataSelector';
 
 const DataTable = (props: any) => {
 
-    const navigate = useNavigate ();
-    
+    const navigate = useNavigate();
+
+    const deletedData = useSelector(selectDeletedData)
+
     const { dataList } = props
     const dataPerPage = 5
 
@@ -24,6 +26,13 @@ const DataTable = (props: any) => {
         dispatch(fetchData(page))
     }, [page]);
 
+    useEffect(() => {
+        if (deletedData) {
+            dispatch(setDeleteData(null))
+            dispatch(fetchData(1))
+        }
+    }, [deletedData])
+
     const columns = [
         { title: 'Name', dataIndex: 'name', key: 'name' },
         { title: 'Age', dataIndex: 'age', key: 'age' },
@@ -36,10 +45,10 @@ const DataTable = (props: any) => {
                     <Button type="primary" onClick={() => navigate(`/data/profile/${record._id}`)}>
                         View Details
                     </Button>
-                    <Button type="primary" onClick={() => console.log(record)} style={{marginLeft: '10px'}}>
+                    <Button type="primary" onClick={() => navigate(`/data/profile/${record._id}`)} style={{ marginLeft: '10px' }}>
                         Edit
                     </Button>
-                    <Button type="primary" onClick={() => console.log(record)} style={{marginLeft: '10px'}}>
+                    <Button type="primary" onClick={() => dispatch(deleteData(record._id))} style={{ marginLeft: '10px' }}>
                         Delete
                     </Button>
                 </>
@@ -59,7 +68,7 @@ const DataTable = (props: any) => {
                     onChange: handlePageChange,
                 }}
             />
-            <Button type="primary" style={{float: 'right'}} onClick={() => navigate('/data/add')}>
+            <Button type="primary" style={{ float: 'right' }} onClick={() => navigate('/data/add')}>
                 Add Data
             </Button>
         </>

@@ -6,6 +6,7 @@ const About = lazy(() => import('../pages/About'));
 const Table = lazy(() => import('../pages/Table'));
 const Add = lazy(() => import('../pages/Add'));
 const Profile = lazy(() => import('../pages/Profile'));
+const Update = lazy(() => import('../pages/Update'));
 
 const ProjectRoutes = () => {
   return (
@@ -18,6 +19,7 @@ const ProjectRoutes = () => {
             <Route path="/data/view" Component={Table} />
             <Route path="/data/add" Component={Add} />
             <Route path="/data/profile/:id" Component={Profile} />
+            <Route path="/data/update/:id" Component={Update} />
           </Routes>
         </Suspense>
       </BrowserRouter >

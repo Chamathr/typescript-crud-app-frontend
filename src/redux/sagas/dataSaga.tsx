@@ -82,7 +82,7 @@ export function* updateDetails(): Generator<any, void, unknown> {
   yield takeEvery(updateDataActions.UPDATE_DATA, function* (payload: any) {
     try {
       yield put(setUpdateDataLoading('loading'));
-      const data: IData = yield call(updateDataApi, { id: payload?.payload?.id, body: payload?.payload?.id });
+      const data: IData = yield call(updateDataApi, { id: payload?.payload?.id, body: payload?.payload?.payload });
       yield put(setUpdateDataLoading('idle'));
       yield put(setUpdateData(data?.data?.data));
     } catch (error: any) {

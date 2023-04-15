@@ -2,28 +2,62 @@ import React from 'react';
 import { Button, Card, Checkbox, Form, Input } from 'antd';
 import { Container } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { addData, fetchData, setAddData } from '../../redux/actions/dataAction';
+import { addData, fetchData, fetchDataById, setAddData, setGetDataById, setUpdateData, updateData } from '../../redux/actions/dataAction';
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectDataById } from '../../redux/selectors/dataSelector';
 
 const DataForm = (props: any) => {
 
-    const { addedData } = props
+    const { changedData, id } = props
+
+    const existingData = useSelector(selectDataById)
+
+    const defaultValues = {
+        name: existingData?.name || '',
+        email: existingData?.email || '',
+        age: existingData?.age || ''
+    }
+
+    useEffect(() => {
+        if (id) {
+            dispatch(fetchDataById(id))
+        }
+    }, [])
 
     const navigate = useNavigate()
 
     useEffect(() => {
-        if(addedData){
-            navigate('/data/view')
-            dispatch(setAddData(null))
+        if (changedData) {
+            if (id) {
+                dispatch(setGetDataById(null))
+                dispatch(setUpdateData(null))
+            }
+            else {
+                dispatch(setAddData(null))
+            }
             dispatch(fetchData(1))
+            navigate('/data/view')
         }
-    }, [addedData])
+    }, [changedData])
 
     const dispatch = useDispatch()
 
+    const [form] = Form.useForm()
+
+    useEffect(() => {
+        form.setFieldsValue(defaultValues)
+    }, [form, defaultValues])
+
     const onFinish = (values: any) => {
-        dispatch(addData(values))
+        if (id) {
+            const { email, ...dataBody } = values
+            dispatch(updateData({ id: id, payload: dataBody }))
+        }
+        else {
+            dispatch(addData(values))
+        }
     };
 
     const onFinishFailed = (errorInfo: any) => {
@@ -35,11 +69,12 @@ const DataForm = (props: any) => {
             <Container style={{ margin: 'auto', paddingTop: '2rem' }}>
                 <Card style={{ margin: 'auto', paddingTop: '2rem' }}>
                     <Form
+                        form={form}
                         name="basic"
                         labelCol={{ span: 8 }}
                         wrapperCol={{ span: 16 }}
                         style={{ maxWidth: 600 }}
-                        initialValues={{ remember: true }}
+                        initialValues={defaultValues}
                         onFinish={onFinish}
                         onFinishFailed={onFinishFailed}
                         autoComplete="off"
@@ -57,7 +92,7 @@ const DataForm = (props: any) => {
                             name="email"
                             rules={[{ required: true, type: 'email', message: 'Please input your Email!' }]}
                         >
-                            <Input />
+                            <Input disabled={id} />
                         </Form.Item>
 
 
