@@ -1,37 +1,29 @@
-/*get data*/
-export const getDataActions = {
+export const dataActions = {
+  /*get data*/
   SET_GET_DATA_LOADING: 'SET_GET_DATA_LOADING',
   GET_DATA: 'GET_DATA',
   SET_GET_DATA: 'SET_GET_DATA',
   SET_GET_DATA_ERROR: 'SET_GET_DATA_ERROR',
-};
 
-/*add data*/
-export const addDataActions = {
+  /*add data*/
   SET_ADD_DATA_LOADING: 'SET_ADD_DATA_LOADING',
   ADD_DATA: 'ADD_DATA',
   SET_ADD_DATA: 'SET_ADD_DATA',
   SET_ADD_DATA_ERROR: 'SET_ADD_DATA_ERROR',
-};
 
-/*get data by id*/
-export const getDataByIdActions = {
+  /*get data by id*/
   SET_GET_DATA_BY_ID_LOADING: 'SET_GET_DATA_BY_ID_LOADING',
   GET_DATA_BY_ID: 'GET_DATA_BY_ID',
   SET_GET_DATA_BY_ID: 'SET_GET_DATA_BY_ID',
   SET_GET_DATA_BY_ID_ERROR: 'SET_GET_DATA_BY_ID_ERROR',
-};
 
-/*update data*/
-export const updateDataActions = {
+  /*update data*/
   SET_UPDATE_DATA_LOADING: 'SET_UPDATE_DATA_LOADING',
   UPDATE_DATA: 'UPDATE_DATA',
   SET_UPDATE_DATA: 'SET_UPDATE_DATA',
   SET_UPDATE_DATA_ERROR: 'SET_UPDATE_DATA_ERROR',
-};
 
-/*delete data*/
-export const deleteDataActions = {
+  /*delete data*/
   SET_DELETE_DATA_LOADING: 'SET_DELETE_DATA_LOADING',
   DELETE_DATA: 'DELETE_DATA',
   SET_DELETE_DATA: 'SET_DELETE_DATA',

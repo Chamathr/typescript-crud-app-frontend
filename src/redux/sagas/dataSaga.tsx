@@ -1,11 +1,7 @@
 import { put, all, fork, call, takeEvery, delay } from "redux-saga/effects";
 import { IData } from "../../interfaces/Data";
 import {
-  addDataActions,
-  deleteDataActions,
-  getDataActions,
-  getDataByIdActions,
-  updateDataActions,
+  dataActions
 } from "../types/dataType";
 import {
   setAddData,
@@ -34,7 +30,7 @@ import {
 
 /*get data*/
 export function* fetchDetails(): Generator<any, void, unknown> {
-  yield takeEvery(getDataActions.GET_DATA, function* (payload: any) {
+  yield takeEvery(dataActions.GET_DATA, function* (payload: any) {
     try {
       yield put(setGetDataLoading('loading'));
       const data: IData = yield call(getDataApi, payload?.payload);
@@ -49,7 +45,7 @@ export function* fetchDetails(): Generator<any, void, unknown> {
 
 /*add data*/
 export function* addDetails(): Generator<any, void, unknown> {
-  yield takeEvery(addDataActions.ADD_DATA, function* (payload: any) {
+  yield takeEvery(dataActions.ADD_DATA, function* (payload: any) {
     try {
       yield put(setAddDataLoading('loading'));
       const data: IData = yield call(addDataApi, payload?.payload);
@@ -64,7 +60,7 @@ export function* addDetails(): Generator<any, void, unknown> {
 
 /*get data by id*/
 export function* getDetailsById(): Generator<any, void, unknown> {
-  yield takeEvery(getDataByIdActions.GET_DATA_BY_ID, function* (payload: any) {
+  yield takeEvery(dataActions.GET_DATA_BY_ID, function* (payload: any) {
     try {
       yield put(setGetDataByIdLoading('loading'));
       const data: IData = yield call(getDataByIdApi, payload?.payload);
@@ -79,7 +75,7 @@ export function* getDetailsById(): Generator<any, void, unknown> {
 
 /*update data*/
 export function* updateDetails(): Generator<any, void, unknown> {
-  yield takeEvery(updateDataActions.UPDATE_DATA, function* (payload: any) {
+  yield takeEvery(dataActions.UPDATE_DATA, function* (payload: any) {
     try {
       yield put(setUpdateDataLoading('loading'));
       const data: IData = yield call(updateDataApi, { id: payload?.payload?.id, body: payload?.payload?.payload });
@@ -94,7 +90,7 @@ export function* updateDetails(): Generator<any, void, unknown> {
 
 /*delete data*/
 export function* deleteDetails(): Generator<any, void, unknown> {
-  yield takeEvery(deleteDataActions.DELETE_DATA, function* (payload: any) {
+  yield takeEvery(dataActions.DELETE_DATA, function* (payload: any) {
     try {
       yield put(setDeleteDataLoading('loading'));
       const data: IData = yield call(deleteDataApi, payload?.payload);
