@@ -26,3 +26,21 @@ export const getDataByIdApi: any = async (payload: any) => {
     return Promise.reject(error);
   }
 };
+
+/*update data*/
+export const updateDataApi: any = async (payload: any) => {
+  try {
+    return Promise.resolve(await apiInstance.put(`/update/${payload?.id}`, payload?.body));
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
+/*delete data*/
+export const deleteDataApi: any = async (payload: any) => {
+  try {
+    return Promise.resolve(await apiInstance.put(`/delete/${payload}`));
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};

@@ -2,28 +2,38 @@ import { put, all, fork, call, takeEvery, delay } from "redux-saga/effects";
 import { IData } from "../../interfaces/Data";
 import {
   addDataActions,
+  deleteDataActions,
   getDataActions,
   getDataByIdActions,
+  updateDataActions,
 } from "../types/dataType";
 import {
   setAddData,
   setAddDataError,
   setAddDataLoading,
+  setDeleteData,
+  setDeleteDataError,
+  setDeleteDataLoading,
   setGetData,
   setGetDataById,
   setGetDataByIdError,
   setGetDataByIdLoading,
   setGetDataError,
-  setGetDataLoading
+  setGetDataLoading,
+  setUpdateData,
+  setUpdateDataError,
+  setUpdateDataLoading
 } from "../actions/dataAction";
 import {
   addDataApi,
+  deleteDataApi,
   getDataApi,
   getDataByIdApi,
+  updateDataApi,
 } from "../services/dataService";
 
 /*get data*/
-export function* getData(): Generator<any, void, unknown> {
+export function* fetchDetails(): Generator<any, void, unknown> {
   yield takeEvery(getDataActions.GET_DATA, function* (payload: any) {
     try {
       yield put(setGetDataLoading('loading'));
@@ -38,7 +48,7 @@ export function* getData(): Generator<any, void, unknown> {
 }
 
 /*add data*/
-export function* addForm(): Generator<any, void, unknown> {
+export function* addDetails(): Generator<any, void, unknown> {
   yield takeEvery(addDataActions.ADD_DATA, function* (payload: any) {
     try {
       yield put(setAddDataLoading('loading'));
@@ -53,7 +63,7 @@ export function* addForm(): Generator<any, void, unknown> {
 }
 
 /*get data by id*/
-export function* getDataById(): Generator<any, void, unknown> {
+export function* getDetailsById(): Generator<any, void, unknown> {
   yield takeEvery(getDataByIdActions.GET_DATA_BY_ID, function* (payload: any) {
     try {
       yield put(setGetDataByIdLoading('loading'));
@@ -67,10 +77,42 @@ export function* getDataById(): Generator<any, void, unknown> {
   });
 }
 
+/*update data*/
+export function* updateDetails(): Generator<any, void, unknown> {
+  yield takeEvery(updateDataActions.UPDATE_DATA, function* (payload: any) {
+    try {
+      yield put(setUpdateDataLoading('loading'));
+      const data: IData = yield call(updateDataApi, { id: payload?.payload?.id, body: payload?.payload?.id });
+      yield put(setUpdateDataLoading('idle'));
+      yield put(setUpdateData(data?.data?.data));
+    } catch (error: any) {
+      yield put(setUpdateDataLoading('idle'));
+      yield put(setUpdateDataError(error.message));
+    }
+  });
+}
+
+/*delete data*/
+export function* deleteDetails(): Generator<any, void, unknown> {
+  yield takeEvery(deleteDataActions.DELETE_DATA, function* (payload: any) {
+    try {
+      yield put(setDeleteDataLoading('loading'));
+      const data: IData = yield call(deleteDataApi, payload?.payload);
+      yield put(setDeleteDataLoading('idle'));
+      yield put(setDeleteData(data?.data?.data));
+    } catch (error: any) {
+      yield put(setDeleteDataLoading('idle'));
+      yield put(setDeleteDataError(error.message));
+    }
+  });
+}
+
 export default function* rootSaga() {
   yield all([
-    fork(getData),
-    fork(addForm),
-    fork(getDataById)
+    fork(fetchDetails),
+    fork(addDetails),
+    fork(getDetailsById),
+    fork(updateDetails),
+    fork(deleteDetails)
   ]);
 }

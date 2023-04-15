@@ -1,5 +1,5 @@
 import { Action } from "redux";
-import { addDataActions, getDataActions, getDataByIdActions } from "../types/dataType";
+import { addDataActions, deleteDataActions, getDataActions, getDataByIdActions, updateDataActions } from "../types/dataType";
 
 const initialState = {
     data: [],
@@ -13,6 +13,14 @@ const initialState = {
     dataById: {},
     getDataByIdLoading: 'idle',
     getDataByIdError: null,
+
+    updatedData: null,
+    updateDataLoading: 'idle',
+    updateDataError: null,
+
+    deletedData: null,
+    deleteDataLoading: 'idle',
+    deleteDataError: null,
 };
 
 export const dataReducer = (state = initialState, action: any) => {
@@ -67,6 +75,40 @@ export const dataReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 getDataByIdError: action.payload,
+            };
+
+        /*update data*/
+        case updateDataActions.SET_UPDATE_DATA:
+            return {
+                ...state,
+                updatedData: action.payload,
+            };
+        case updateDataActions.SET_UPDATE_DATA_LOADING:
+            return {
+                ...state,
+                updateDataLoading: action.payload,
+            };
+        case updateDataActions.SET_UPDATE_DATA_ERROR:
+            return {
+                ...state,
+                updateDataError: action.payload,
+            };
+
+        /*delete data*/
+        case deleteDataActions.SET_DELETE_DATA:
+            return {
+                ...state,
+                deletedData: action.payload,
+            };
+        case deleteDataActions.SET_DELETE_DATA_LOADING:
+            return {
+                ...state,
+                deleteDataLoading: action.payload,
+            };
+        case deleteDataActions.SET_DELETE_DATA_ERROR:
+            return {
+                ...state,
+                deleteDataError: action.payload,
             };
 
         default:
