@@ -11,20 +11,15 @@ const DataTable = (props: any) => {
 
     const deletedData = useSelector(selectDeletedData)
 
-    const { dataList } = props
+    const { dataList, setPage } = props
     const dataPerPage = 5
 
     const dispatch = useDispatch();
 
-    const [page, setPage] = useState(1);
-
     const handlePageChange = (pageNumber: number) => {
         setPage(pageNumber)
+        
     };
-
-    useEffect(() => {
-            dispatch(fetchData(page))
-    }, [page]);
 
     useEffect(() => {
         if (deletedData) {

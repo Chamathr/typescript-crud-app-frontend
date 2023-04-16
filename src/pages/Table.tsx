@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchData } from "../redux/actions/dataAction";
 import { connect } from "react-redux";
@@ -10,15 +10,20 @@ const Table = () => {
 
     const dispatch = useDispatch();
     const dataList = useSelector(selectDataList)
+    const [page, setPage] = useState(1)
+
+    const getPage = (e: any) => {
+        setPage(e)
+    }
 
     useEffect(() => {
-        dispatch(fetchData(1))
-    }, [])
+        dispatch(fetchData(page))
+    }, [page])
 
     return (
         <>
-            <Card sx={{padding: '5rem', height: '100vh'}}>
-                <DataTable dataList={dataList} />
+            <Card sx={{ padding: '5rem', height: '100vh' }}>
+                <DataTable dataList={dataList} setPage={getPage} />
             </Card>
         </>
     )
