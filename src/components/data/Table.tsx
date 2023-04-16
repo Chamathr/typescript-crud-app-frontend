@@ -23,7 +23,7 @@ const DataTable = (props: any) => {
     };
 
     useEffect(() => {
-        dispatch(fetchData(page))
+            dispatch(fetchData(page))
     }, [page]);
 
     useEffect(() => {
@@ -45,7 +45,7 @@ const DataTable = (props: any) => {
                     <Button type="primary" onClick={() => navigate(`/data/profile/${record._id}`)}>
                         View Details
                     </Button>
-                    <Button type="primary" onClick={() => navigate(`/data/profile/${record._id}`)} style={{ marginLeft: '10px' }}>
+                    <Button type="primary" onClick={() => navigate(`/data/update/${record._id}`)} style={{ marginLeft: '10px' }}>
                         Edit
                     </Button>
                     <Button type="primary" onClick={() => dispatch(deleteData(record._id))} style={{ marginLeft: '10px' }}>
