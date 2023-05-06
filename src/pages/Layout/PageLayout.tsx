@@ -14,7 +14,6 @@ const PageLayout = (props: any) => {
         <>
             <Layout>
                 <Header className="header">
-                    <div className="logo" />
                     <NavigationBar />
                 </Header>
                 <Layout>
