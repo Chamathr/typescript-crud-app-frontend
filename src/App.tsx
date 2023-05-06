@@ -9,7 +9,7 @@ import { b2cPolicies } from './auth/auth';
 import Home from './pages/Home';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { compareIssuingPolicy } from './utils/claimUtils';
-import { PageLayout } from './components/Layout/PageLayout';
+import PageLayout from './pages/Layout/PageLayout';
 
 const Pages = () => {
   /**
@@ -88,7 +88,8 @@ const Pages = () => {
   }, [instance]);
 
   return (
-    <ProjectRoutes />
+    <>
+    </>
   );
 };
 

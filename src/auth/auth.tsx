@@ -10,7 +10,7 @@ import { LogLevel } from '@azure/msal-browser';
  * To learn more about user flows, visit: https://docs.microsoft.com/en-us/azure/active-directory-b2c/user-flow-overview
  * To learn more about custom policies, visit: https://docs.microsoft.com/en-us/azure/active-directory-b2c/custom-policy-overview
  */
-export const b2cPolicies = {
+export const b2cPolicies: any = {
     names: {
         signUpSignIn: 'B2C_1_SIGNUP_SIGNIN',
         forgotPassword: 'B2C_1_reset_v3',
@@ -35,7 +35,7 @@ export const b2cPolicies = {
  * For a full list of MSAL.js configuration parameters, visit:
  * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/configuration.md
  */
-export const msalConfig = {
+export const msalConfig: any = {
     auth: {
         clientId: '983d6c87-0c9c-4029-af1b-0aed78600a27', // This is the ONLY mandatory field that you need to supply.
         authority: b2cPolicies.authorities.signUpSignIn.authority, // Choose SUSI as your default authority.
@@ -82,7 +82,7 @@ export const msalConfig = {
  * For more information about OIDC scopes, visit:
  * https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
  */
-export const loginRequest = {
+export const loginRequest: any = {
     scopes: [],
 };
 
@@ -91,7 +91,7 @@ export const loginRequest = {
  * An optional silentRequest object can be used to achieve silent SSO
  * between applications by providing a "login_hint" property.
  */
-export const silentRequest = {
-    scopes: ["openid", "profile"],
+export const silentRequest: any = {
+    scopes: ['openid', 'profile', 'offline_access'],
     loginHint: "example@domain.net"
 };

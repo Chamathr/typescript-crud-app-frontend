@@ -2,6 +2,7 @@ import { AuthenticatedTemplate } from '@azure/msal-react';
 import { useMsal } from '@azure/msal-react';
 import { Container } from 'react-bootstrap';
 import { IdTokenData } from '../components/DataDisplay';
+import HomeContent from '../components/home/Home';
 
 /***
  * Component to detail ID token claims with a description for each claim. For more details on ID token claims, please check the following links:
@@ -16,9 +17,7 @@ const Home = () => {
         <>
             <AuthenticatedTemplate>
                 {activeAccount ? (
-                    <Container>
-                        <IdTokenData idTokenClaims={activeAccount.idTokenClaims} />
-                    </Container>
+                    <HomeContent/>
                 ) : null}
             </AuthenticatedTemplate>
         </>
