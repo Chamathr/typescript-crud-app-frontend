@@ -1,9 +1,9 @@
-import DataViewCard from '../components/data/DataViewCard';
+import DataViewCard from '../../components/data/DataViewCard';
 import { Space } from 'antd';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectDataById } from '../redux/selectors/dataSelector';
-import { fetchDataById } from '../redux/actions/dataAction';
+import { selectDataById } from '../../redux/selectors/dataSelector';
+import { fetchDataById } from '../../redux/actions/dataAction';
 import { connect } from "react-redux";
 import { useParams } from 'react-router-dom';
 

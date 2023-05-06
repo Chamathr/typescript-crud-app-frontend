@@ -6,10 +6,10 @@ import { MsalProvider, useMsal } from '@azure/msal-react';
 import { EventType } from '@azure/msal-browser';
 import { useEffect } from 'react';
 import { b2cPolicies } from './auth/auth';
-import Home from './pages/Home';
+import Home from './pages/home/Home';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { compareIssuingPolicy } from './utils/claimUtils';
-import PageLayout from './pages/Layout/PageLayout';
+import PageLayout from './pages/layout/PageLayout';
 
 const Pages = () => {
   /**
@@ -106,9 +106,11 @@ const App = (props: any) => {
     <>
       <MsalProvider instance={props.instance}>
         <ReduxProvider store={store}>
-          <PageLayout>
-            <Pages />
-          </PageLayout>
+          <BrowserRouter>
+            <PageLayout>
+              <Pages />
+            </PageLayout>
+          </BrowserRouter>
         </ReduxProvider>
       </MsalProvider>
     </>

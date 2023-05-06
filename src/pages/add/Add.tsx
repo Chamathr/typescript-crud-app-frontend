@@ -1,7 +1,7 @@
 import React from 'react';
-import DataForm from '../components/data/Form';
+import DataForm from '../../components/data/Form';
 import { useSelector } from 'react-redux';
-import { selectAddedData } from '../redux/selectors/dataSelector';
+import { selectAddedData } from '../../redux/selectors/dataSelector';
 
 const AddData: React.FC = () => {
 

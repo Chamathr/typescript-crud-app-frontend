@@ -1,7 +1,8 @@
-import { Nav, Navbar, Dropdown, DropdownButton, Button } from 'react-bootstrap';
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from '@azure/msal-react';
 import { InteractionStatus } from "@azure/msal-browser";
 import { loginRequest, b2cPolicies } from '../../auth/auth';
+import { Button, Menu, Row, Space } from 'antd';
+import { Link } from 'react-router-dom';
 
 const NavigationBar = () => {
     const { instance, inProgress } = useMsal();
@@ -28,35 +29,49 @@ const NavigationBar = () => {
 
     return (
         <>
-            <Navbar bg="primary" variant="dark" className="navbarStyle">
-                <a className="navbar-brand" href="/">
-                    Microsoft identity platform
-                </a>
-                <AuthenticatedTemplate>
-                    <Nav.Link className="navbarButton" href="/">
+            <AuthenticatedTemplate>
+                <Row style={{ display: "flex", justifyContent: "space-between" }}>
+                    <Space>
+                        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['home']}>
+                            <Menu.Item key="home">
+                                <Link to="/">Home</Link>
+                            </Menu.Item>
+                            <Menu.Item key="about">
+                                <a href="/about">
+                                    About
+                                </a>
+                            </Menu.Item>
+                            <Menu.Item key="data">
+                                <a href="/data/view">
+                                    Data
+                                </a>
+                            </Menu.Item>
+                        </Menu>
+                        {/* <Link to="/home">
                         Home
-                    </Nav.Link>
-                    <Nav.Link className="navbarButton" href="/about">
+                    </Link>
+                    <Link to="/about">
                         About
-                    </Nav.Link>
-                    <Nav.Link className="navbarButton" href="/data/view">
+                    </Link>
+                    <Link to="/data/view">
                         Data
-                    </Nav.Link>
-                    <div className="collapse navbar-collapse justify-content-end">
-                        <Button variant="info" onClick={handleProfileEdit} className="profileButton">
+                    </Link> */}
+                    </Space>
+                    <Space>
+                        <Button type="primary" onClick={handleProfileEdit}>
                             Edit Profile
                         </Button>
-                        <Button variant="info" onClick={handleLogout} className="profileButton">
+                        <Button type="primary" onClick={handleLogout} >
                             Sign Out
                         </Button>
-                    </div>
-                </AuthenticatedTemplate>
-                <UnauthenticatedTemplate>
-                    <Button variant="info" onClick={handleLogin} className="profileButton">
-                        Sign In
-                    </Button>
-                </UnauthenticatedTemplate>
-            </Navbar>
+                    </Space>
+                </Row>
+            </AuthenticatedTemplate>
+            <UnauthenticatedTemplate>
+                <Button onClick={handleLogin}>
+                    Sign In
+                </Button>
+            </UnauthenticatedTemplate>
         </>
     );
 };

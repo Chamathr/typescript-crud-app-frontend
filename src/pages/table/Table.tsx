@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchData } from "../redux/actions/dataAction";
+import { fetchData } from "../../redux/actions/dataAction";
 import { connect } from "react-redux";
-import { selectDataList } from "../redux/selectors/dataSelector";
-import DataTable from "../components/data/Table";
+import { selectDataList } from "../../redux/selectors/dataSelector";
+import DataTable from "../../components/data/Table";
 import { Card } from "@mui/material";
 
 const Table = () => {

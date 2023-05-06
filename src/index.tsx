@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { MsalProvider } from '@azure/msal-react';
 import { msalConfig } from './auth/auth';
 import { EventType, PublicClientApplication } from '@azure/msal-browser';
+import { BrowserRouter } from 'react-router-dom';
 
 /**
 * MSAL should be instantiated outside of the component tree to prevent it from being re-instantiated on re-renders.
@@ -37,7 +38,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <MsalProvider instance={msalInstance}>
-      <App instance={msalInstance} />
+        <App instance={msalInstance} />
     </MsalProvider>
   </React.StrictMode>
 );
