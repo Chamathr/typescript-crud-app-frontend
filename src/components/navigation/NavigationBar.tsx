@@ -1,6 +1,6 @@
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from '@azure/msal-react';
 import { InteractionStatus } from "@azure/msal-browser";
-import { loginRequest, b2cPolicies } from '../../auth/auth';
+import { loginRequest, b2cPolicies } from '../../auth/b2cAuth';
 import { Button, Menu, Row, Space } from 'antd';
 import { Link } from 'react-router-dom';
 

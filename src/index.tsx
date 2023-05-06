@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { MsalProvider } from '@azure/msal-react';
-import { msalConfig } from './auth/auth';
+import { msalConfig } from './auth/b2cAuth';
 import { EventType, PublicClientApplication } from '@azure/msal-browser';
 import { BrowserRouter } from 'react-router-dom';
 

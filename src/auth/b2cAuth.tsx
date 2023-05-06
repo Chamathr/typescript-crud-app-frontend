@@ -12,22 +12,22 @@ import { LogLevel } from '@azure/msal-browser';
  */
 export const b2cPolicies: any = {
     names: {
-        signUpSignIn: 'B2C_1_SIGNUP_SIGNIN',
-        forgotPassword: 'B2C_1_PASSWORD_REST',
-        editProfile: 'B2C_1_PROFILE_EDIT',
+        signUpSignIn: process.env.REACT_APP_AZURE_B2C_AUTHORITY_SIGNUP_SIGNIN_NAME,
+        forgotPassword: process.env.REACT_APP_AZURE_B2C_AUTHORITY_PASSWORD_RESET_NAME,
+        editProfile: process.env.REACT_APP_AZURE_B2C_AUTHORITY_PROFILE_EDIT_NAME,
     },
     authorities: {
         signUpSignIn: {
-            authority: 'https://crudappnodereact.b2clogin.com/crudappnodereact.onmicrosoft.com/B2C_1_SIGNUP_SIGNIN',
+            authority: process.env.REACT_APP_AZURE_B2C_AUTHORITY_SIGNUP_SIGNIN,
         },
         forgotPassword: {
-            authority: 'https://crudappnodereact.b2clogin.com/crudappnodereact.onmicrosoft.com/B2C_1_PASSWORD_REST',
+            authority: process.env.REACT_APP_AZURE_B2C_AUTHORITY_PASSWORD_RESET,
         },
         editProfile: {
-            authority: 'https://crudappnodereact.b2clogin.com/crudappnodereact.onmicrosoft.com/B2C_1_PROFILE_EDIT',
+            authority: process.env.REACT_APP_AZURE_B2C_AUTHORITY_PROFILE_EDIT,
         },
     },
-    authorityDomain: 'crudappnodereact.b2clogin.com',
+    authorityDomain: process.env.REACT_APP_AZURE_B2C_AUTHORITY_DOMAIN,
 };
 
 /**
@@ -37,12 +37,12 @@ export const b2cPolicies: any = {
  */
 export const msalConfig: any = {
     auth: {
-        clientId: '983d6c87-0c9c-4029-af1b-0aed78600a27', // This is the ONLY mandatory field that you need to supply.
+        clientId: process.env.REACT_APP_AZURE_B2C_CLIENT_ID, // This is the ONLY mandatory field that you need to supply.
         authority: b2cPolicies.authorities.signUpSignIn.authority, // Choose SUSI as your default authority.
         knownAuthorities: [b2cPolicies.authorityDomain], // Mark your B2C tenant's domain as trusted.
-        redirectUri: 'http://localhost:3000', // You must register this URI on Azure Portal/App Registration. Defaults to window.location.origin
-        postLogoutRedirectUri: 'http://localhost:3000', // Indicates the page to navigate after logout.
-        navigateToLoginRequestUrl: true, // If "true", will navigate back to the original request location before processing the auth code response.
+        redirectUri: process.env.REACT_APP_AZURE_B2C_REDIRECT_URI, // You must register this URI on Azure Portal/App Registration. Defaults to window.location.origin
+        postLogoutRedirectUri: process.env.REACT_APP_AZURE_B2C_POST_LOGOUT_REDIRECT_URI, // Indicates the page to navigate after logout.
+        navigateToLoginRequestUrl: false, // If "true", will navigate back to the original request location before processing the auth code response.
     },
     cache: {
         cacheLocation: 'sessionStorage', // Configures cache location. "sessionStorage" is more secure, but "localStorage" gives you SSO between tabs.
@@ -83,7 +83,7 @@ export const msalConfig: any = {
  * https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
  */
 export const loginRequest: any = {
-    scopes: [],
+    scopes: ['openid'],
 };
 
 
