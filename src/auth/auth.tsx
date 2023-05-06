@@ -13,7 +13,7 @@ import { LogLevel } from '@azure/msal-browser';
 export const b2cPolicies: any = {
     names: {
         signUpSignIn: 'B2C_1_SIGNUP_SIGNIN',
-        forgotPassword: 'B2C_1_reset_v3',
+        forgotPassword: 'B2C_1_PASSWORD_REST',
         editProfile: 'B2C_1_PROFILE_EDIT',
     },
     authorities: {
@@ -21,7 +21,7 @@ export const b2cPolicies: any = {
             authority: 'https://crudappnodereact.b2clogin.com/crudappnodereact.onmicrosoft.com/B2C_1_SIGNUP_SIGNIN',
         },
         forgotPassword: {
-            authority: 'https://fabrikamb2c.b2clogin.com/fabrikamb2c.onmicrosoft.com/B2C_1_reset_v3',
+            authority: 'https://crudappnodereact.b2clogin.com/crudappnodereact.onmicrosoft.com/B2C_1_PASSWORD_REST',
         },
         editProfile: {
             authority: 'https://crudappnodereact.b2clogin.com/crudappnodereact.onmicrosoft.com/B2C_1_PROFILE_EDIT',

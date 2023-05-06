@@ -30,7 +30,7 @@ const NavigationBar = () => {
     return (
         <>
             <AuthenticatedTemplate>
-                <Row style={{ display: "flex", justifyContent: "space-between"}}>
+                <Row style={{ display: "flex", justifyContent: "space-between" }}>
                     <Space>
                         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['about']}>
                             <Menu.Item key="about">
@@ -45,7 +45,7 @@ const NavigationBar = () => {
                             </Menu.Item>
                         </Menu>
                     </Space>
-                    <Space style={{alignSelf: "end"}}>
+                    <Space style={{ alignSelf: "end" }}>
                         <Button type="primary" onClick={handleProfileEdit}>
                             Edit Profile
                         </Button>
@@ -56,9 +56,11 @@ const NavigationBar = () => {
                 </Row>
             </AuthenticatedTemplate>
             <UnauthenticatedTemplate>
-                <Button onClick={handleLogin}>
-                    Sign In
-                </Button>
+                <Space style={{ display: "flex", justifyContent: "end" }}>
+                    <Button type="primary" onClick={handleLogin}>
+                        Sign In
+                    </Button>
+                </Space>
             </UnauthenticatedTemplate>
         </>
     );

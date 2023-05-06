@@ -10,6 +10,7 @@ import Home from './pages/home/Home';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { compareIssuingPolicy } from './utils/claimUtils';
 import PageLayout from './pages/layout/PageLayout';
+import About from './pages/about/About';
 
 const Pages = () => {
   /**
@@ -88,8 +89,9 @@ const Pages = () => {
   }, [instance]);
 
   return (
-    <>
-    </>
+    <Routes>
+      <Route path="/about" element={<About />} />
+    </Routes>
   );
 };
 
