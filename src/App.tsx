@@ -1,5 +1,5 @@
 import './App.css';
-import ProjectRoutes from './routes/Routes';
+import ProjectRoutes from './routes/AuthRoutes';
 import { Provider as ReduxProvider } from "react-redux";
 import { store } from './redux/store';
 import { MsalProvider, useMsal } from '@azure/msal-react';
