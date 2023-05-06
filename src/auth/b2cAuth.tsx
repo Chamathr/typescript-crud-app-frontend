@@ -50,7 +50,7 @@ const acquireToken: any = (successCallback: any) => {
     msalApp.loginRedirect(B2C_SCOPES.API_ACCESS);
   } else {
     msalApp.acquireTokenSilent(B2C_SCOPES.API_ACCESS).then(
-      (result) => {
+      (result: any) => {
         if (msalAppConfig.cache.cacheLocation === LOCAL_STORAGE) {
           window.localStorage.setItem(AUTHORIZATION_KEY, "Bearer " + result);
         } else {
@@ -66,7 +66,7 @@ const acquireToken: any = (successCallback: any) => {
           successCallback();
         }
       },
-      (error) => {
+      (error: any) => {
         if (error) {
           msalApp.acquireTokenRedirect(B2C_SCOPES.API_ACCESS);
         }
@@ -83,7 +83,7 @@ const authentication = {
   },
   run: (launchApp: any) => {
     state.launchApp = launchApp;
-    msalApp.handleRedirectCallback((error) => {
+    msalApp.handleRedirectCallback((error: any) => {
       if (error) {
         const errorMessage = error.errorMessage ? error.errorMessage : "Unable to acquire access token.";
         console.log(errorMessage);
