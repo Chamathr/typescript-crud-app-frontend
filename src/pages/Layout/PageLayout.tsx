@@ -2,7 +2,7 @@ import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-reac
 import NavigationBar from "../../components/navigation/NavigationBar";
 import AuthRoutes from "../../routes/AuthRoutes";
 import BasicRoutes from "../../routes/BasicRoutes";
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import { Layout, theme } from 'antd';
 
 const { Header, Content, Sider } = Layout;
 
