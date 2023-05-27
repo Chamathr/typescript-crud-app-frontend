@@ -2,7 +2,6 @@ import './App.css';
 import ProjectRoutes from './routes/AuthRoutes';
 import { Provider as ReduxProvider } from "react-redux";
 import { store } from './redux/store';
-import { MsalProvider, useMsal } from '@azure/msal-react';
 import { BrowserRouter } from 'react-router-dom';
 import PageLayout from './pages/layout/PageLayout';
 import AuthPages from './auth/authPage';
@@ -18,7 +17,6 @@ import AuthPages from './auth/authPage';
 const App = (props: any) => {
   return (
     <>
-      <MsalProvider instance={props.instance}>
         <ReduxProvider store={store}>
           <BrowserRouter>
             <PageLayout>
@@ -26,7 +24,6 @@ const App = (props: any) => {
             </PageLayout>
           </BrowserRouter>
         </ReduxProvider>
-      </MsalProvider>
     </>
   );
 }

@@ -1,4 +1,3 @@
-import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 import NavigationBar from "../../components/navigation/NavigationBar";
 import AuthRoutes from "../../routes/AuthRoutes";
 import BasicRoutes from "../../routes/BasicRoutes";
@@ -27,12 +26,8 @@ const PageLayout = (props: any) => {
                                 height: "100vh"
                             }}
                         >
-                            <AuthenticatedTemplate>
                                 <AuthRoutes />
-                            </AuthenticatedTemplate>
-                            <UnauthenticatedTemplate>
                                 <BasicRoutes />
-                            </UnauthenticatedTemplate>
                         </Content>
                     </Layout>
                 </Layout>
