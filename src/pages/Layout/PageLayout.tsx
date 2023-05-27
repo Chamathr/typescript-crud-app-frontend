@@ -6,6 +6,8 @@ import { Layout, theme } from 'antd';
 const { Header, Content, Sider } = Layout;
 
 const PageLayout = (props: any) => {
+    
+    const token = false
     const {
         token: { colorBgContainer },
     } = theme.useToken();
@@ -26,8 +28,8 @@ const PageLayout = (props: any) => {
                                 height: "100vh"
                             }}
                         >
-                                <AuthRoutes />
-                                <BasicRoutes />
+                            {token ? <AuthRoutes /> : null}
+                            <BasicRoutes />
                         </Content>
                     </Layout>
                 </Layout>
