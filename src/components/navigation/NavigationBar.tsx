@@ -1,12 +1,13 @@
 import { Button, Menu, Row, Space } from 'antd';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const NavigationBar = () => {
 
     const navigate = useNavigate();
 
-    const token = false
-
+    const [token, setToken] = useState(localStorage.getItem('token'))
+    
     const handleSignin = () => {
         navigate('/signin')
     };
@@ -15,7 +16,10 @@ const NavigationBar = () => {
         navigate('/signup')
     };
 
-    const handleLogout = () => {
+    const handleSignout = () => {
+        localStorage.removeItem('token');
+        setToken(null)
+        navigate('/')
     };
 
 
@@ -44,7 +48,7 @@ const NavigationBar = () => {
                         Edit Profile
                     </Button>
                     {token ?
-                        <Button type="primary" onClick={handleLogout} >
+                        <Button type="primary" onClick={handleSignout} >
                             Sign Out
                         </Button>
                         :

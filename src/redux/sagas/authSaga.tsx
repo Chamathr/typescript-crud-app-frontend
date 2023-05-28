@@ -14,6 +14,7 @@ export function* callSignin(): Generator<any, void, unknown> {
       const data: IData = yield call(signinApi, payload?.payload);
       yield put(setSigninLoading('idle'));
       yield put(setSignin(data?.data?.data));
+      localStorage.setItem('token', data?.data?.data);
     } catch (error: any) {
       yield put(setSigninLoading('idle'));
       yield put(setSigningError(error.message));

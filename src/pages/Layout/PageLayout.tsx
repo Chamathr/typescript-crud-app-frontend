@@ -1,3 +1,4 @@
+import { useState } from "react";
 import NavigationBar from "../../components/navigation/NavigationBar";
 import AuthRoutes from "../../routes/AuthRoutes";
 import BasicRoutes from "../../routes/BasicRoutes";
@@ -7,7 +8,8 @@ const { Header, Content, Sider } = Layout;
 
 const PageLayout = (props: any) => {
     
-    const token = true
+    const [token, setToken] = useState(localStorage.getItem('token'))
+
     const {
         token: { colorBgContainer },
     } = theme.useToken();

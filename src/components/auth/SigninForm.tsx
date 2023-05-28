@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { fetchSignin } from '../../redux/actions/authAction';
 
 const SigninForm = () => {
-
+    
     const formItemLayout = {
         labelCol: {
             xs: { span: 24 },
@@ -47,7 +47,7 @@ const SigninForm = () => {
             <Form.Item wrapperCol={{ span: 18 }}>
                 <div style={buttonWrapperStyle}>
                     <Button type="primary" htmlType="submit">
-                        Sign Up
+                        Sign In
                     </Button>
                 </div>
             </Form.Item>

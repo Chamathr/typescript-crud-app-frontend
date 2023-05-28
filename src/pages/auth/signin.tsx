@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SigninForm from '../../components/auth/SigninForm';
 import { useSelector } from 'react-redux';
-import { selectAddedData } from '../../redux/selectors/dataSelector';
+import { selectSignin } from '../../redux/selectors/authSelector';
+import { useNavigate } from 'react-router-dom';
 
 const Signin: React.FC = () => {
 
-//   const addedData = useSelector(selectAddedData)
+    const navigate = useNavigate()
+    const token = useSelector(selectSignin)
 
-  return (
-    <>
-      <SigninForm />
-    </>
-  )
+    useEffect(() => {
+        if(token){
+            navigate('/')
+        }
+    }, [token])
+
+    return (
+        <>
+            <SigninForm />
+        </>
+    )
 }
 
 export default Signin;
