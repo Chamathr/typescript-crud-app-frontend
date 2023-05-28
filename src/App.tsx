@@ -4,7 +4,6 @@ import { Provider as ReduxProvider } from "react-redux";
 import { store } from './redux/store';
 import { BrowserRouter } from 'react-router-dom';
 import PageLayout from './pages/layout/PageLayout';
-import AuthPages from './auth/authPage';
 
 const App = (props: any) => {
   return (
@@ -12,7 +11,6 @@ const App = (props: any) => {
         <ReduxProvider store={store}>
           <BrowserRouter>
             <PageLayout>
-              <AuthPages />
             </PageLayout>
           </BrowserRouter>
         </ReduxProvider>

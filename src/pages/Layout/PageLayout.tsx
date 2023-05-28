@@ -8,7 +8,7 @@ const { Header, Content, Sider } = Layout;
 
 const PageLayout = (props: any) => {
     
-    const [token, setToken] = useState(localStorage.getItem('token'))
+    const token = localStorage.getItem('token')
 
     const {
         token: { colorBgContainer },

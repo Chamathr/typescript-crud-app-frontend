@@ -37,23 +37,29 @@ const NavigationBar = () => {
         <>
             <Row style={{ display: "flex", justifyContent: "space-between" }}>
                 <Space>
-                    <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['about']}>
-                        <Menu.Item key="about">
-                            <Link to="/about">
-                                About
+                    <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['home']}>
+                        <Menu.Item key="home">
+                            <Link to="/">
+                                Home
                             </Link>
                         </Menu.Item>
-                        <Menu.Item key="data">
-                            <Link to="/data/view">
-                                Data
+                        {token ?
+                            <Menu.Item key="data">
+                                <Link to="/data/view">
+                                    Data
+                                </Link>
+                            </Menu.Item>
+                            :
+                            null
+                        }
+                         <Menu.Item key="about">
+                            <Link to="/about">
+                                About
                             </Link>
                         </Menu.Item>
                     </Menu>
                 </Space>
                 <Space style={{ alignSelf: "end" }}>
-                    <Button type="primary" onClick={handleProfileEdit}>
-                        Edit Profile
-                    </Button>
                     {token ?
                         <Button type="primary" onClick={handleSignout} >
                             Sign Out
