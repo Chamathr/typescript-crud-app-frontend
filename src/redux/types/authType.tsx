@@ -1,0 +1,8 @@
+export const authTypes = {
+  /*signin*/
+  FETCH_SIGNIN: 'FETCH_SIGNIN',
+  SET_SIGNIN: 'SET_SIGNIN',
+  SET_SIGNIN_LOADING: 'SET_SIGNIN_LOADING',
+  SET_SIGNIN_ERROR: 'SET_SIGNIN_ERROR',
+
+};

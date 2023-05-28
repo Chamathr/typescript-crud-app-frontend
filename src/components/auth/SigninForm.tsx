@@ -1,4 +1,6 @@
 import { Form, Input, Button } from 'antd';
+import { useDispatch } from 'react-redux';
+import { fetchSignin } from '../../redux/actions/authAction';
 
 const SigninForm = () => {
 
@@ -18,16 +20,18 @@ const SigninForm = () => {
         justifyContent: 'flex-end',
     };
 
+    const dispatch = useDispatch();
+
     const onFinish = (values: any) => {
-        console.log('Received values of form:', values);
+        dispatch(fetchSignin(values))
     };
 
     return (
         <Form onFinish={onFinish} {...formItemLayout} style={{ paddingTop: "50px" }}>
             <Form.Item
-                label="Username"
-                name="username"
-                rules={[{ required: true, message: 'Please input your username!' }]}
+                label="Email"
+                name="email"
+                rules={[{ required: true, message: 'Please input your email!' }]}
             >
                 <Input />
             </Form.Item>
