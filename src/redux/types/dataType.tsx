@@ -1,4 +1,8 @@
 export const dataTypes = {
+
+  /*reset store after signout*/
+  RESET_STORE: 'RESET_STORE',
+
   /*get data*/
   SET_GET_DATA_LOADING: 'SET_GET_DATA_LOADING',
   GET_DATA: 'GET_DATA',

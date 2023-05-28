@@ -1,5 +1,12 @@
 import { dataTypes } from "../types/dataType";
 
+/*reset store after signout*/
+export const resetStore = () => {
+  return {
+    type: dataTypes.RESET_STORE,
+  };
+};
+
 /*get data*/
 export const fetchData = (payload: any) => {
   return {

@@ -29,7 +29,13 @@ export const authApiInstance = axios.create({
     mode: "cors",
     redirect: "follow",
     withCredentials: true,
-    referrer: "no-referrer",
-    Authorization: `Bearer ${localStorage.getItem('token')}`
+    referrer: "no-referrer"
   },
 });
+
+const token = localStorage.getItem('token')
+if (token) {
+    authApiInstance.defaults.headers.common['Authorization'] = token;
+} else {
+  delete authApiInstance.defaults.headers.common['Authorization'];
+}

@@ -5,6 +5,7 @@ import { dispatch, useSelector } from '../../redux/store';
 import { setSignin } from '../../redux/actions/authAction';
 import { selectSignin } from '../../redux/selectors/authSelector';
 import { authApiInstance } from '../../http/apiInstance';
+import { resetStore } from '../../redux/actions/dataAction';
 
 const NavigationBar = () => {
 
@@ -21,8 +22,10 @@ const NavigationBar = () => {
     };
 
     const handleSignout = () => {
+        delete authApiInstance.defaults.headers.common['Authorization'];
         localStorage.removeItem('token');
         dispatch(setSignin(null))
+        dispatch(resetStore())
         navigate('/')
     };
 

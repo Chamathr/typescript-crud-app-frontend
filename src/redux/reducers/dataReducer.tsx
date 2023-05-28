@@ -25,6 +25,10 @@ const initialState = {
 export const dataReducer = (state = initialState, action: any) => {
 
     switch (action.type) {
+        /*reset store after signout*/
+        case dataTypes.RESET_STORE:
+            return initialState;
+
         /*get data*/
         case dataTypes.SET_GET_DATA:
             return {
