@@ -1,11 +1,18 @@
 import { Button, Menu, Row, Space } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const NavigationBar = () => {
 
-    const token = true
+    const navigate = useNavigate();
 
-    const handleLogin = () => {
+    const token = false
+
+    const handleSignin = () => {
+        navigate('/signin')
+    };
+
+    const handleSignup = () => {
+        navigate('/signup')
     };
 
     const handleLogout = () => {
@@ -41,9 +48,14 @@ const NavigationBar = () => {
                             Sign Out
                         </Button>
                         :
-                        <Button type="primary" onClick={handleLogin}>
-                            Sign In
-                        </Button>
+                        <>
+                            <Button type="primary" onClick={handleSignup}>
+                                Sign Up
+                            </Button>
+                            <Button type="primary" onClick={handleSignin}>
+                                Sign In
+                            </Button>
+                        </>
                     }
                 </Space>
             </Row>
