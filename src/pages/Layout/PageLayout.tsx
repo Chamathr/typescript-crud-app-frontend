@@ -7,7 +7,7 @@ const { Header, Content, Sider } = Layout;
 
 const PageLayout = (props: any) => {
     
-    const token = false
+    const token = true
     const {
         token: { colorBgContainer },
     } = theme.useToken();
