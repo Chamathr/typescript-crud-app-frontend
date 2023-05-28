@@ -11,7 +11,7 @@ const NavigationBar = () => {
 
     const navigate = useNavigate();
 
-    const token = useSelector(selectSignin)
+    const token = useSelector(selectSignin) || localStorage.getItem('token')
 
     const handleSignin = () => {
         navigate('/signin')

@@ -35,7 +35,7 @@ export const authApiInstance = axios.create({
 
 const token = localStorage.getItem('token')
 if (token) {
-    authApiInstance.defaults.headers.common['Authorization'] = token;
+    authApiInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 } else {
   delete authApiInstance.defaults.headers.common['Authorization'];
 }
