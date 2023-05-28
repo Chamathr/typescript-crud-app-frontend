@@ -1,4 +1,3 @@
-import { Action } from "redux";
 import { authTypes } from "../types/authType";
 
 const initialState = {

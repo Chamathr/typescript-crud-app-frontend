@@ -1,4 +1,4 @@
-export const dataActions = {
+export const dataTypes = {
   /*get data*/
   SET_GET_DATA_LOADING: 'SET_GET_DATA_LOADING',
   GET_DATA: 'GET_DATA',
