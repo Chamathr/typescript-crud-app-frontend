@@ -1,13 +1,17 @@
 import { Button, Menu, Row, Space } from 'antd';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { dispatch, useSelector } from '../../redux/store';
+import { setSignin } from '../../redux/actions/authAction';
+import { selectSignin } from '../../redux/selectors/authSelector';
+import { authApiInstance } from '../../http/apiInstance';
 
 const NavigationBar = () => {
 
     const navigate = useNavigate();
 
-    const [token, setToken] = useState(localStorage.getItem('token'))
-    
+    const token = useSelector(selectSignin)
+
     const handleSignin = () => {
         navigate('/signin')
     };
@@ -18,7 +22,7 @@ const NavigationBar = () => {
 
     const handleSignout = () => {
         localStorage.removeItem('token');
-        setToken(null)
+        dispatch(setSignin(null))
         navigate('/')
     };
 
