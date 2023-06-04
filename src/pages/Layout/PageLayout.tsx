@@ -28,8 +28,6 @@ const PageLayout = (props: any) => {
                             }}
                         >
                             {children}
-                            {/* <AuthRoutes />
-                            <BasicRoutes /> */}
                         </Content>
                     </Layout>
                 </Layout>
