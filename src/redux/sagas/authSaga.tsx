@@ -5,6 +5,7 @@ import {
 } from "../types/authType";
 import { setSignin, setSigninLoading, setSigningError } from "../actions/authAction";
 import { signinApi } from "../services/authService";
+import { setAccessToken } from "../../utils/Jwt";
 
 /*signin*/
 export function* callSignin(): Generator<any, void, unknown> {
@@ -14,7 +15,7 @@ export function* callSignin(): Generator<any, void, unknown> {
       const data: IData = yield call(signinApi, payload?.payload);
       yield put(setSigninLoading('idle'));
       yield put(setSignin(data?.data?.data));
-      localStorage.setItem('token', data?.data?.data);
+      setAccessToken(data?.data?.data);
     } catch (error: any) {
       yield put(setSigninLoading('idle'));
       yield put(setSigningError(error.message));

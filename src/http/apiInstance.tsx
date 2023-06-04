@@ -1,5 +1,6 @@
 import axios from "axios";
 import { BASE_URL, BASE_URL_PREFIX } from "../constants/apiConstants";
+import { getAccessToken } from "../utils/Jwt";
 
 export const apiInstance = axios.create({
   baseURL: `${BASE_URL}/${BASE_URL_PREFIX}`,
@@ -33,7 +34,7 @@ export const authApiInstance = axios.create({
   },
 });
 
-const token = localStorage.getItem('token')
+const token = getAccessToken()
 if (token) {
     authApiInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 } else {

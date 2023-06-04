@@ -1,14 +1,11 @@
-import { useState } from "react";
 import NavigationBar from "../../components/navigation/NavigationBar";
-import AuthRoutes from "../../routes/AuthRoutes";
-import BasicRoutes from "../../routes/BasicRoutes";
 import { Layout, theme } from 'antd';
 
 const { Header, Content, Sider } = Layout;
 
 const PageLayout = (props: any) => {
-    
-    const token = localStorage.getItem('token')
+
+    const {children} = props
 
     const {
         token: { colorBgContainer },
@@ -30,8 +27,9 @@ const PageLayout = (props: any) => {
                                 height: "100vh"
                             }}
                         >
-                            {token ? <AuthRoutes /> : null}
-                            <BasicRoutes />
+                            {children}
+                            {/* <AuthRoutes />
+                            <BasicRoutes /> */}
                         </Content>
                     </Layout>
                 </Layout>

@@ -6,12 +6,13 @@ import { setSignin } from '../../redux/actions/authAction';
 import { selectSignin } from '../../redux/selectors/authSelector';
 import { authApiInstance } from '../../http/apiInstance';
 import { resetStore } from '../../redux/actions/dataAction';
+import { getAccessToken, removeAccessToken } from '../../utils/Jwt';
 
 const NavigationBar = () => {
 
     const navigate = useNavigate();
 
-    const token = useSelector(selectSignin) || localStorage.getItem('token')
+    const token = useSelector(selectSignin) || getAccessToken()
 
     const handleSignin = () => {
         navigate('/signin')
@@ -23,7 +24,7 @@ const NavigationBar = () => {
 
     const handleSignout = () => {
         delete authApiInstance.defaults.headers.common['Authorization'];
-        localStorage.removeItem('token');
+        removeAccessToken()
         dispatch(setSignin(null))
         dispatch(resetStore())
         navigate('/')
