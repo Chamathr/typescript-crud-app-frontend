@@ -14,6 +14,7 @@ const getAccessToken = () => {
 
 const removeAccessToken = () => {
   localStorage.removeItem("token");
+  window.location.href = '/signin'
 }
 
 export { setAccessToken, getAccessToken, removeAccessToken };
