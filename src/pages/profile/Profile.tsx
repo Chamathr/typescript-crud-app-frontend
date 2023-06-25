@@ -27,6 +27,4 @@ const ProfileView = () => {
     );
 };
 
-export default connect(
-    fetchDataById
-)(ProfileView);
+export default ProfileView;

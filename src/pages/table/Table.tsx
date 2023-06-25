@@ -29,6 +29,4 @@ const Table = () => {
     )
 }
 
-export default connect(
-    fetchData
-)(Table);
+export default Table
