@@ -1,9 +1,9 @@
-import { authApiInstance } from "../../http/apiInstance";
+import { apiInstance } from "../../http/apiInstance";
 
 /*get data*/
 export const getDataApi: any = async (payload: any) => {
   try {
-    return Promise.resolve(await authApiInstance.get(`/crud/get?page=${payload}`));
+    return Promise.resolve(await apiInstance.get(`/crud/get?page=${payload}`));
   } catch (error) {
     return Promise.reject(error);
   }
@@ -12,7 +12,7 @@ export const getDataApi: any = async (payload: any) => {
 /*add data*/
 export const addDataApi: any = async (payload: any) => {
   try {
-    return Promise.resolve(await authApiInstance.post(`/crud/add`, payload));
+    return Promise.resolve(await apiInstance.post(`/crud/add`, payload));
   } catch (error) {
     return Promise.reject(error);
   }
@@ -21,7 +21,7 @@ export const addDataApi: any = async (payload: any) => {
 /*get data by id*/
 export const getDataByIdApi: any = async (payload: any) => {
   try {
-    return Promise.resolve(await authApiInstance.get(`/crud/get/${payload}`, payload));
+    return Promise.resolve(await apiInstance.get(`/crud/get/${payload}`, payload));
   } catch (error) {
     return Promise.reject(error);
   }
@@ -30,7 +30,7 @@ export const getDataByIdApi: any = async (payload: any) => {
 /*update data*/
 export const updateDataApi: any = async (payload: any) => {
   try {
-    return Promise.resolve(await authApiInstance.put(`/crud/update/${payload?.id}`, payload?.body));
+    return Promise.resolve(await apiInstance.put(`/crud/update/${payload?.id}`, payload?.body));
   } catch (error) {
     return Promise.reject(error);
   }
@@ -39,7 +39,7 @@ export const updateDataApi: any = async (payload: any) => {
 /*delete data*/
 export const deleteDataApi: any = async (payload: any) => {
   try {
-    return Promise.resolve(await authApiInstance.put(`/crud/delete/${payload}`));
+    return Promise.resolve(await apiInstance.put(`/crud/delete/${payload}`));
   } catch (error) {
     return Promise.reject(error);
   }

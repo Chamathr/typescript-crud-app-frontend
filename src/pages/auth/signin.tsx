@@ -3,7 +3,7 @@ import SigninForm from '../../components/auth/SigninForm';
 import { useSelector } from 'react-redux';
 import { selectSignin } from '../../redux/selectors/authSelector';
 import { useNavigate } from 'react-router-dom';
-import { authApiInstance } from '../../http/apiInstance';
+import { apiInstance } from '../../http/apiInstance';
 
 const Signin: React.FC = () => {
 
@@ -12,7 +12,7 @@ const Signin: React.FC = () => {
 
     useEffect(() => {
         if (token) {
-            authApiInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            apiInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
             navigate('/')
         }
     }, [token])

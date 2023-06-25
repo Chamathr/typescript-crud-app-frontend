@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { dispatch, useSelector } from '../../redux/store';
 import { setSignin } from '../../redux/actions/authAction';
 import { selectSignin } from '../../redux/selectors/authSelector';
-import { authApiInstance } from '../../http/apiInstance';
+import { apiInstance } from '../../http/apiInstance';
 import { resetStore } from '../../redux/actions/dataAction';
 import { getAccessToken, removeAccessToken } from '../../utils/Jwt';
 
@@ -23,7 +23,7 @@ const NavigationBar = () => {
     };
 
     const handleSignout = () => {
-        delete authApiInstance.defaults.headers.common['Authorization'];
+        delete apiInstance.defaults.headers.common['Authorization'];
         removeAccessToken()
         dispatch(setSignin(null))
         dispatch(resetStore())
