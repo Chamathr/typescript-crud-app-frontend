@@ -23,7 +23,6 @@ const NavigationBar = () => {
     };
 
     const handleSignout = () => {
-        delete apiInstance.defaults.headers.common['Authorization'];
         removeAccessToken()
         dispatch(setSignin(null))
         dispatch(resetStore())
