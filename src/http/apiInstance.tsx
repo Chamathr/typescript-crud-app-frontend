@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BASE_URL, BASE_URL_PREFIX } from "../constants/apiConstants";
-import { getAccessToken } from "../utils/Jwt";
+import { getAccessToken, removeAccessToken } from "../utils/Jwt";
 
 const apiInstance = axios.create({
   baseURL: `${BASE_URL}/${BASE_URL_PREFIX}`,
@@ -36,6 +36,9 @@ apiInstance.interceptors.response.use(
     return Promise.resolve(response);
   },
   (error) => {
+    if(error?.response?.status === 401){
+      removeAccessToken()
+    }
     return Promise.reject(error);
   }
 );
