@@ -8,3 +8,12 @@ export const signinApi: any = async (payload: any) => {
     return Promise.reject(error);
   }
 };
+
+/*signin*/
+export const signupApi: any = async (payload: any) => {
+  try {
+    return Promise.resolve(await apiInstance.post(`/auth/signup`, payload));
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};

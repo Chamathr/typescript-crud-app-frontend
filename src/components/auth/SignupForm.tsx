@@ -1,10 +1,15 @@
 import React from 'react';
 import { Form, Input, Button } from 'antd';
+import { fetchSignup } from '../../redux/actions/authAction';
+import { useDispatch } from 'react-redux';
 
 const SignupForm = () => {
 
+  const dispatch = useDispatch();
+
   const onFinish = (values: any) => {
-    console.log('Received values of form:', values);
+    dispatch(fetchSignup(values))
+
   };
 
   const formItemLayout = {

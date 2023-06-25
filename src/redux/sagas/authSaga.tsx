@@ -3,8 +3,8 @@ import { IData } from "../../interfaces/Data";
 import {
   authTypes
 } from "../types/authType";
-import { setSignin, setSigninLoading, setSigningError } from "../actions/authAction";
-import { signinApi } from "../services/authService";
+import { setSignin, setSigninLoading, setSigningError, setSignup, setSignupError, setSignupLoading } from "../actions/authAction";
+import { signinApi, signupApi } from "../services/authService";
 import { setAccessToken } from "../../utils/Jwt";
 
 /*signin*/
@@ -23,8 +23,24 @@ export function* callSignin(): Generator<any, void, unknown> {
   });
 }
 
+/*signup*/
+export function* callSignup(): Generator<any, void, unknown> {
+  yield takeEvery(authTypes.FETCH_SIGNUP, function* (payload: any) {
+    try {
+      yield put(setSignupLoading('loading'));
+      const data: IData = yield call(signupApi, payload?.payload);
+      yield put(setSignupLoading('idle'));
+      yield put(setSignup(data?.data?.data));
+    } catch (error: any) {
+      yield put(setSignupLoading('idle'));
+      yield put(setSignupError(error.message));
+    }
+  });
+}
+
 export default function* rootSaga() {
   yield all([
-    fork(callSignin)
+    fork(callSignin),
+    fork(callSignup)
   ]);
 }
