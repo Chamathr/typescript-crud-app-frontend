@@ -3,9 +3,9 @@ import { IData } from "../../interfaces/Data";
 import {
   authTypes
 } from "../types/authType";
-import { setSignin, setSigninLoading, setSigningError, setSignup, setSignupError, setSignupLoading } from "../actions/authAction";
-import { signinApi, signupApi } from "../services/authService";
-import { setAccessToken } from "../../utils/Jwt";
+import { setAccessTokenData, setAccessTokenError, setAccessTokenLoading, setSignin, setSigninLoading, setSigningError, setSignup, setSignupError, setSignupLoading } from "../actions/authAction";
+import { accessTokenApi, signinApi, signupApi } from "../services/authService";
+import { removeRefreshToken, setAccessToken,setRefreshToken } from "../../utils/Jwt";
 
 /*signin*/
 export function* callSignin(): Generator<any, void, unknown> {
@@ -15,7 +15,8 @@ export function* callSignin(): Generator<any, void, unknown> {
       const data: IData = yield call(signinApi, payload?.payload);
       yield put(setSigninLoading('idle'));
       yield put(setSignin(data?.data?.data));
-      setAccessToken(data?.data?.data);
+      setAccessToken(data?.data?.data?.accessToken);
+      setRefreshToken(data?.data?.data?.refreshToken);
     } catch (error: any) {
       yield put(setSigninLoading('idle'));
       yield put(setSigningError(error.message));
@@ -38,9 +39,28 @@ export function* callSignup(): Generator<any, void, unknown> {
   });
 }
 
+/*access-token by refresh-token*/
+export function* callAccessToken(): Generator<any, void, unknown> {
+  yield takeEvery(authTypes.FETCH_ACCESS_TOKEN, function* (payload: any) {
+    try {
+      yield put(setAccessTokenLoading('loading'));
+      const data: IData = yield call(accessTokenApi, payload?.payload);
+      yield put(setAccessTokenLoading('idle'));
+      yield put(setAccessTokenData(data?.data?.data));
+      setAccessToken(data?.data?.data?.accessToken);
+    } catch (error: any) {
+      yield put(setAccessTokenLoading('idle'));
+      yield put(setAccessTokenError(error.message));
+      removeRefreshToken()
+    }
+  });
+}
+
+
 export default function* rootSaga() {
   yield all([
     fork(callSignin),
-    fork(callSignup)
+    fork(callSignup),
+    fork(callAccessToken)
   ]);
 }

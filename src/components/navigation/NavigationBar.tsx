@@ -24,9 +24,9 @@ const NavigationBar = () => {
 
     const handleSignout = () => {
         removeAccessToken()
-        dispatch(setSignin(null))
+        dispatch(setSignin({ payload: null }))
         dispatch(resetStore())
-        navigate('/')
+        navigate('/signin')
     };
 
 
@@ -52,7 +52,7 @@ const NavigationBar = () => {
                             :
                             null
                         }
-                         <Menu.Item key="about">
+                        <Menu.Item key="about">
                             <Link to="/about">
                                 About
                             </Link>

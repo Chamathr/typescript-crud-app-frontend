@@ -1,6 +1,10 @@
 import axios from "axios";
 import { BASE_URL, BASE_URL_PREFIX } from "../constants/apiConstants";
-import { getAccessToken, removeAccessToken } from "../utils/Jwt";
+import { getAccessToken, getRefreshToken, removeAccessToken } from "../utils/Jwt";
+import { fetchAccessToken } from "../redux/actions/authAction";
+import { useSelector } from "react-redux";
+import { selectAccessToken } from "../redux/selectors/authSelector";
+import { dispatch } from "../redux/store";
 
 const apiInstance = axios.create({
   baseURL: `${BASE_URL}/${BASE_URL_PREFIX}`,
@@ -36,8 +40,11 @@ apiInstance.interceptors.response.use(
     return Promise.resolve(response);
   },
   (error) => {
-    if(error?.response?.status === 401){
+    if (error?.response?.status === 401) {
       removeAccessToken()
+      const refreshToken = getRefreshToken()
+      dispatch(fetchAccessToken(refreshToken))
+      window.location.reload();
     }
     return Promise.reject(error);
   }

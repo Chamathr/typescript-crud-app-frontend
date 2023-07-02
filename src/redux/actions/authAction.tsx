@@ -57,3 +57,32 @@ export const setSignupError = (payload: any) => {
     payload,
   };
 };
+
+/*access-token by refresh-token*/
+export const fetchAccessToken = (payload: any) => {
+  return {
+    type: authTypes.FETCH_ACCESS_TOKEN,
+    payload,
+  };
+};
+
+export const setAccessTokenData = (payload: any) => {
+  return {
+    type: authTypes.SET_ACCESS_TOKEN,
+    payload,
+  };
+};
+
+export const setAccessTokenLoading = (payload: any) => {
+  return {
+    type: authTypes.SET_ACCESS_TOKEN_LOADING,
+    payload,
+  };
+};
+
+export const setAccessTokenError = (payload: any) => {
+  return {
+    type: authTypes.SET_ACCESS_TOKEN_ERROR,
+    payload,
+  };
+};
