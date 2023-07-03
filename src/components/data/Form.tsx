@@ -6,13 +6,17 @@ import { addData, fetchData, fetchDataById, setAddData, setGetDataById, setUpdat
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectDataById } from '../../redux/selectors/dataSelector';
+import { selectAddedData, selectDataById, selectUpdatedData } from '../../redux/selectors/dataSelector';
 
 const DataForm = (props: any) => {
 
-    const { changedData, id } = props
+    const { id } = props
 
     const existingData = useSelector(selectDataById)
+    const updatedData = useSelector(selectUpdatedData)
+    const addedData = useSelector(selectAddedData)
+
+    const changedData = id ? updatedData : addedData
 
     const defaultValues = {
         name: existingData?.name || '',

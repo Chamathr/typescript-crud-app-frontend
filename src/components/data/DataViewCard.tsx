@@ -1,8 +1,10 @@
 import { Card, Avatar, Row, Col } from 'antd';
+import { useSelector } from 'react-redux';
+import { selectDataById } from '../../redux/selectors/dataSelector';
 
 const DataViewCard = (props: any) => {
 
-  const dataById = props?.data
+  const dataById = useSelector(selectDataById)
 
   return (
     <>

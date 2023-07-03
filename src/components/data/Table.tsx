@@ -3,15 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteData, fetchData, setDeleteData } from '../../redux/actions/dataAction';
 import { Table, Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { selectDeletedData } from '../../redux/selectors/dataSelector';
+import { selectDataList, selectDeletedData } from '../../redux/selectors/dataSelector';
 
 const DataTable = (props: any) => {
 
     const navigate = useNavigate();
 
     const deletedData = useSelector(selectDeletedData)
+    const dataList = useSelector(selectDataList)
 
-    const { dataList, setPage } = props
+    const { setPage } = props
     const dataPerPage = 5
 
     const dispatch = useDispatch();
