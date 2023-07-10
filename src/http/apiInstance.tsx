@@ -41,10 +41,9 @@ apiInstance.interceptors.response.use(
   },
   (error) => {
     if (error?.response?.status === 401) {
-      removeAccessToken()
       const refreshToken = getRefreshToken()
       dispatch(fetchAccessToken(refreshToken))
-      window.location.reload();
+      return Promise.resolve(apiInstance(error.config))
     }
     return Promise.reject(error);
   }
