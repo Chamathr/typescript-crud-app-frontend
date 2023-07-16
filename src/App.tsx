@@ -2,7 +2,7 @@ import './App.css';
 import { Provider as ReduxProvider } from "react-redux";
 import { store } from './redux/store';
 import { BrowserRouter } from 'react-router-dom';
-import PageLayout from './pages/layouts/PageLayout';
+import PageLayout from './pages/layout/PageLayout';
 import AppRoutes from './routes/AppRoutes';
 
 const App = (props: any) => {
