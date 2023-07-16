@@ -1,26 +1,35 @@
-# Use an official Node.js runtime as a parent image
-FROM node:16-alpine
+# Step 1: Choose the Node.js version as the base image
+FROM node:18 AS builder
 
-#)ptimize the installation of Node.js packages 
-RUN npm set progress=false && npm config set depth 0 && npm cache clean --force
-
-# Set the working directory to /app
+# Step 2: Set the working directory in the container
 WORKDIR /app
 
-# Copy the package.json and package-lock.json files to the container
+# Step 3: Copy package.json and package-lock.json to the container
 COPY package*.json ./
 
-# Install app dependencies
-RUN npm install --force
+# Step 4: Install project dependencies
+RUN npm install -f
 
-# Copy the rest of the application code to the container
+# Step 5: Copy the source code to the container
 COPY . .
 
-# Build the TypeScript code
+# Step 6: Build the TypeScript project
 RUN npm run build
 
-# Expose the port the application listens on
+# Step 7: Use a smaller base image for serving the built app
+FROM node:18-alpine
+
+# Step 8: Install a lightweight web server, e.g., serve
+RUN npm install -g serve
+
+# Step 9: Set the working directory in the container
+WORKDIR /app
+
+# Step 10: Copy the built app from the builder stage to the final image
+COPY --from=builder /app/build .
+
+# Step 11: Expose the port that `serve` will use
 EXPOSE 3000
 
-# Start the application
-CMD [ "npm", "run", "start" ]
+# Step 12: Start the web server to serve the built app
+CMD ["serve", "-s", ".", "-l", "3000"]
