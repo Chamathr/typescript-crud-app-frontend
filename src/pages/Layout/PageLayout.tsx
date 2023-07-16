@@ -1,7 +1,7 @@
 import NavigationBar from "../../components/navigation/NavigationBar";
 import { Layout, theme } from 'antd';
 
-const { Header, Content, Sider } = Layout;
+const { Header, Content } = Layout;
 
 const PageLayout = (props: any) => {
 
