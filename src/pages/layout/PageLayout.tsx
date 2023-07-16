@@ -10,6 +10,7 @@ const PageLayout = (props: any) => {
     const {
         token: { colorBgContainer },
     } = theme.useToken();
+    
     return (
         <>
             <Layout>
