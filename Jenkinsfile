@@ -14,26 +14,31 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'docker build -t chamathranaweera/crud-frontend:stg .'
+                bat 'docker build -t chamathranaweera/crud-frontend:stg .'
             }
         }
 
         stage('Login') {
             steps {
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub_cred') {
+                    bat 'docker build -t chamathranaweera/crud-frontend:stg .'
+                    bat 'docker push chamathranaweera/crud-frontend:stg'
+                }
+                }
             }
         }
 
         stage('Push') {
             steps {
-                sh 'docker push chamathranaweera/crud-frontend:stg'
+                bat 'docker push chamathranaweera/crud-frontend:stg'
             }
         }
     }
 
     post {
         always {
-            sh 'docker logout'
+            bat 'docker logout'
         }
     }
 }
