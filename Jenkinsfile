@@ -6,34 +6,24 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
+        stage('Git Checkout') {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/FT/add-auth-jwt']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Chamathr/typescript-crud-app-frontend.git']]])
             }
         }
 
-        stage('Build') {
-            steps {
-                bat 'docker build -t chamathranaweera/crud-frontend:stg .'
-            }
-        }
-
-        stage('Login') {
+        stage('Docker Build & Push') {
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub_cred') {
-                    bat 'docker build -t chamathranaweera/crud-frontend:stg .'
+                    bat 'docker build -t crud-frontend:stg .'
+                    bat 'docker tag crud-frontend:stg chamathranaweera/crud-frontend:stg'
                     bat 'docker push chamathranaweera/crud-frontend:stg'
                 }
                 }
             }
         }
-
-        stage('Push') {
-            steps {
-                bat 'docker push chamathranaweera/crud-frontend:stg'
-            }
-        }
+        
     }
 
     post {
